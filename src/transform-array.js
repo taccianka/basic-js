@@ -9,7 +9,7 @@ module.exports = function transform(arr) {
   let array = [];
   let flag = 0;
 
-  console.log(arr, "\n\n");
+  // console.log(arr, "\n\n");
   for (let i = 0; i < arr.length; i++) {
     if (typeof arr[i] != "string") {
       array.push(arr[i]);
@@ -43,6 +43,6 @@ module.exports = function transform(arr) {
     if (Array.isArray(element)) transform(element);
   });
 */
-  console.log("array =", array);
+  // console.log("array =", array);
   return array;
 };

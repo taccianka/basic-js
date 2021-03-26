@@ -8,7 +8,7 @@
   </head>
   <body>
     <script>
-      let arr = [1, 2, 3, "--discard-prev", 1337, "--discard-next", 4, 5];
+  /*    let arr = [1, 2, 3, "--discard-prev", 1337, "--discard-next", 4, 5];
       //[1, 2, 3, 1337, 4, 5]
       /*
                 ['--discard-prev', 1, 2, 3],
@@ -16,7 +16,10 @@
                 [1, 2, 3, '--double-next'],
                 [1, 2, 3, '--discard-next']
       */
-      let array = [];
+
+/* transform array func */
+
+/*      let array = [];
 
       let flag = 0;
 
@@ -49,7 +52,16 @@
         }
       }
 
-      console.log(array);
+      console.log(array);*/
+
+      let turns = Math.pow(2, disksNumber) - 1;
+   let seconds = Math.floor(turns / (turnsSpeed / 3600));
+  let result = {
+    turns: Math.pow(2, disksNumber) - 1,
+    seconds: Math.floor(turns / (turnsSpeed / 3600)),
+  };
+   result;
+
     </script>
   </body>
 </html>
