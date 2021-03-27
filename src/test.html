@@ -36,79 +36,99 @@
          return previousValue + currentValue;
        }));*/
 
-      /* Extended repeater */
-      let str = "REPEATABLE_STRING";
-      let options = {
-        repeatTimes: 2,
-        addition: "ADDITION",
-        additionRepeatTimes: 3,
-      };
-      //  assert.equal(repeater('q62Q1BUHzT', { repeatTimes: 1, separator: 'kntiUBYlD8', addition: 'NJlyh2T5Ff', additionRepeatTimes: 5, additionSeparator: 'F8qlqGevyf' }), 'q62Q1BUHzTNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5Ff');
-
-      /*   let str = "la";
-       let options = {
-         repeatTimes: 3,
-         separator: "s",
-         addition: "+",
-         additionRepeatTimes: 1,
-       };*/
-      let resultString = "";
-      let separator = "";
-      let addition = "";
-      let repeatTimes, additionTimes;
-
-      if (options.hasOwnProperty("separator")) {
-        separator = options.separator;
-      } else {
-        separator = "+";
+      /* var1*/
+      let message = "Samelengthkey";
+      let key = "Samelengthkey";
+      let encryptedMessage = [];
+      let messageToNumber = [];
+      let keyToNumber = [];
+      let i, j;
+      let crypto = [];
+      /*
+      for (let i = 0; i < message.length; i++) {
+        if (message[i] >= "a" && message[i]<="z") messageToNumber[i] = message.charCodeAt(i) - 97;
+        else messageToNumber[i] = message[i];
       }
-
-      if (options.hasOwnProperty("additionSeparator")) {
-        additionSepar = options.additionSeparator;
-      } else {
-        additionSepar = "|";
+      console.log(messageToNumber);
+      for (let i = 0; i < key.length; i++) {
+        keyToNumber[i] = key.charCodeAt(i) - 97;
       }
-
-      if (options.hasOwnProperty("addition")) {
-        addition = options.addition;
+      console.log(keyToNumber);
+      for (i = 0, j = 0; i < message.length; i++, j++) {
+        if (j == keyToNumber.length) j = 0;
+        if (!(messageToNumber[i] === " ")) {
+          if (messageToNumber[i] + keyToNumber[j] < 26) {
+            encryptedMessage[i] = messageToNumber[i] + keyToNumber[j];
+          } else encryptedMessage[i] = messageToNumber[i] + keyToNumber[j] - 26;
+        } else encryptedMessage[i] = " ";
       }
+      console.log(encryptedMessage);
+      for (i = 0; i < encryptedMessage.length; i++) {
+        if (encryptedMessage[i] != " ") {
+          crypto[i] = String.fromCharCode(encryptedMessage[i] + 97);
+        } else crypto[i] = " ";
+      }*/
+      function directMashine(message, key, action) {
+        let encryptedMessage = [];
+        let messageToNumber = [];
+        let keyToNumber = [];
+        let i, j;
+        let crypto = [];
 
-      /*  if (options.hasOwnProperty("additionRepeatTimes")) {
-         if (!options.hasOwnProperty("additionSeparator"))
-           addition = addition.repeat(options.additionRepeatTimes);
-         else {
-           if (options.additionRepeatTimes > 1) {
-             addition = addition + options.additionSeparator;
-             addition = addition.repeat(options.additionRepeatTimes);
-             addition = addition.slice(0, -options.additionSeparator.length);
-           }
-         }
-       }*/
+        message = message.toLowerCase();
+        key = key.toLowerCase();
 
-      if (options.hasOwnProperty("additionRepeatTimes")) {
-        //   if (!options.hasOwnProperty("additionSeparator"))
-        //  addition = addition.repeat(options.additionRepeatTimes);
-        // else {
-        if (options.additionRepeatTimes > 1) {
-          addition = addition + additionSepar;
-          addition = addition.repeat(options.additionRepeatTimes);
-          addition = addition.slice(0, -additionSepar.length);
+        for (let i = 0; i < message.length; i++) {
+          if (message[i] >= "a" && message[i] <= "z")
+            messageToNumber[i] = message.charCodeAt(i) - 97;
+          else messageToNumber[i] = message[i];
         }
-      }
-
-      if (options.hasOwnProperty("repeatTimes")) {
-        for (i = 0; i < options.repeatTimes; i++) {
-          resultString = resultString + str + addition + separator;
+        //  console.log(messageToNumber);
+        for (let i = 0; i < key.length; i++) {
+          keyToNumber[i] = key.charCodeAt(i) - 97;
         }
-        resultString = resultString.slice(0, -separator.length);
-      } else {
-        resultString = resultString + str + addition;
+        //  console.log(keyToNumber);
+        switch (action) {
+          case "encrypt":
+            for (i = 0, j = 0; i < message.length; i++) {
+              if (j == keyToNumber.length) j = 0;
+              if (message[i] >= "a" && message[i] <= "z") {
+                if (messageToNumber[i] + keyToNumber[j] < 26) {
+                  encryptedMessage[i] = messageToNumber[i] + keyToNumber[j];
+                } else {
+                  encryptedMessage[i] =
+                    messageToNumber[i] + keyToNumber[j] - 26;
+                }
+                j++;
+              } else encryptedMessage[i] = messageToNumber[i];
+            }
+            break;
+          case "decrypt":
+            for (i = 0, j = 0; i < message.length; i++) {
+              if (j == keyToNumber.length) j = 0;
+              if (message[i] >= "a" && message[i] <= "z") {
+                if (messageToNumber[i] + keyToNumber[j] > 0) {
+                  encryptedMessage[i] = messageToNumber[i] - keyToNumber[j];
+                } else {
+                  encryptedMessage[i] =
+                    messageToNumber[i] - keyToNumber[j] + 26;
+                }
+                j++;
+              } else encryptedMessage[i] = messageToNumber[i];
+            }
+            break;
+        }
+        //  console.log(encryptedMessage);
+        for (i = 0; i < encryptedMessage.length; i++) {
+          if (message[i] >= "a" && message[i] <= "z") {
+            crypto[i] = String.fromCharCode(encryptedMessage[i] + 97);
+          } else crypto[i] = encryptedMessage[i];
+        }
+        return crypto.join("").toUpperCase();
       }
 
-      console.log(resultString);
       console.log(
-        resultString ==
-          "REPEATABLE_STRINGADDITION|ADDITION|ADDITION+REPEATABLE_STRINGADDITION|ADDITION|ADDITION"
+        directMashine("UWJJW XAGWLNFM VNNNDXHVWWL :)", "js", "decrypt")
       );
     </script>
   </body>
