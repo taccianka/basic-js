@@ -5,7 +5,6 @@ module.exports = function repeater(str, options) {
   let separator = "";
   let addition = "";
   let additionSepar = "";
-  let repeatTimes, additionTimes;
 
   if (options.hasOwnProperty("separator")) {
     separator = options.separator;
@@ -13,19 +12,21 @@ module.exports = function repeater(str, options) {
     separator = "+";
   }
 
+  if (options.hasOwnProperty("additionSeparator")) {
+    additionSepar = options.additionSeparator;
+  } else {
+    additionSepar = "|";
+  }
+
   if (options.hasOwnProperty("addition")) {
     addition = options.addition;
   }
 
   if (options.hasOwnProperty("additionRepeatTimes")) {
-    if (!options.hasOwnProperty("additionSeparator"))
+    if (options.additionRepeatTimes > 1) {
+      addition = addition + additionSepar;
       addition = addition.repeat(options.additionRepeatTimes);
-    else {
-      if (options.additionRepeatTimes > 1) {
-        addition = addition + options.additionSeparator;
-        addition = addition.repeat(options.additionRepeatTimes);
-        addition = addition.slice(0, -options.additionSeparator.length);
-      }
+      addition = addition.slice(0, -additionSepar.length);
     }
   }
 
