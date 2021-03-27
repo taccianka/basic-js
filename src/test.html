@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*  let arr = [1, 2, 3, [8, [2]], 4, 5, []];
+        let arr1 = arr.flat(1);
+        console.log("arr = ", arr);
+        //      console.log("arr1", arr1);
+
+        let depth = 1;
+        let i = 0;
+        // console.log("first array", arr);
+        do {
+          if (arr == null) break;
+          if (Array.isArray(arr)) {
+            //depth++;
+            if (Array.isArray(arr[i])) {
+              calculateDepth(arr[i]);
+              depth++;
+            } else i++;
+          }
+          console.log(depth);
+        } while (1);
+        console.log(depth);*/
+
+      /* let arr = [1, 2, 3, 4, 5, 1];
+      const reducer = (accum, currentValue) => accum + currentValue;
+
+      console.log(arr.reduce(function depthCalc(previousValue, currentValue, index, array) {
+        return previousValue + currentValue;
+      }));*/
+
+      /* Extended repeater */
+      let str = "q62Q1BUHzT";
+      let options = {
+        repeatTimes: 1,
+        separator: "kntiUBYlD8",
+        addition: "NJlyh2T5Ff",
+        additionRepeatTimes: 5,
+        additionSeparator: "F8qlqGevyf",
+      };
+      //  assert.equal(repeater('q62Q1BUHzT', { repeatTimes: 1, separator: 'kntiUBYlD8', addition: 'NJlyh2T5Ff', additionRepeatTimes: 5, additionSeparator: 'F8qlqGevyf' }), 'q62Q1BUHzTNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5Ff');
+
+      /*   let str = "la";
+      let options = {
+        repeatTimes: 3,
+        separator: "s",
+        addition: "+",
+        additionRepeatTimes: 1,
+      };*/
+      let resultString = "";
+      let separator = "";
+      let addition = "";
+      let repeatTimes, additionTimes;
+
+      if (options.hasOwnProperty("separator")) {
+        separator = options.separator;
+      } else {
+        separator = "+";
+      }
+
+      if (options.hasOwnProperty("addition")) {
+        addition = options.addition;
+      }
+
+      if (options.hasOwnProperty("additionRepeatTimes")) {
+        if (!options.hasOwnProperty("additionSeparator"))
+          addition = addition.repeat(options.additionRepeatTimes);
+        else {
+          if (options.additionRepeatTimes > 1) {
+            addition = addition + options.additionSeparator;
+            addition = addition.repeat(options.additionRepeatTimes);
+            addition = addition.slice(0, -options.additionSeparator.length);
+          }
+        }
+      }
+
+      if (options.hasOwnProperty("repeatTimes")) {
+          for (i = 0; i < options.repeatTimes; i++) {
+            resultString = resultString + str + addition + separator;
+          }
+          resultString = resultString.slice(0, -separator.length);
+      } else {
+        resultString = resultString + str + addition;
+      }
+
+      console.log(resultString);
+      console.log(
+        resultString ==
+          "q62Q1BUHzTNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5FfF8qlqGevyfNJlyh2T5Ff"
+      );
+    </script>
+  </body>
+</html>

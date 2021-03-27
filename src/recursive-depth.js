@@ -7,21 +7,25 @@ module.exports = class DepthCalculator {
   }
 };
 
-/*
-module.exports = class DepthCalculator {
- /* calculateDepth(arr) {
+/*module.exports = class DepthCalculator {
+  calculateDepth(arr) {
     let depth = 0;
     let i = 0;
     console.log("first array", arr);
-    if (arr == null) return depth;
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    if (Array.isArray(arr)) depth++;
+
     if (Array.isArray(arr)) {
       depth++;
       do {
-        if (arr[i].isArray) {
-          calculateDepth(arr[i]);
+        if (Array.isArray(arr[i])) {
+          arr.flat();
           depth++;
+          calculateDepth(arr[i]);
         } else i++;
-      }while(1);
+        if (arr == null) return depth;
+        if (i == arr[i].length) break;
+      } while (1);
     }
     return depth;
   }
