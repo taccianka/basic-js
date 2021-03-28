@@ -9,32 +9,32 @@
   <body>
     <script>
       /*  let arr = [1, 2, 3, [8, [2]], 4, 5, []];
-         let arr1 = arr.flat(1);
-         console.log("arr = ", arr);
-         //      console.log("arr1", arr1);
+               let arr1 = arr.flat(1);
+               console.log("arr = ", arr);
+               //      console.log("arr1", arr1);
 
-         let depth = 1;
-         let i = 0;
-         // console.log("first array", arr);
-         do {
-           if (arr == null) break;
-           if (Array.isArray(arr)) {
-             //depth++;
-             if (Array.isArray(arr[i])) {
-               calculateDepth(arr[i]);
-               depth++;
-             } else i++;
-           }
-           console.log(depth);
-         } while (1);
-         console.log(depth);*/
+               let depth = 1;
+               let i = 0;
+               // console.log("first array", arr);
+               do {
+                 if (arr == null) break;
+                 if (Array.isArray(arr)) {
+                   //depth++;
+                   if (Array.isArray(arr[i])) {
+                     calculateDepth(arr[i]);
+                     depth++;
+                   } else i++;
+                 }
+                 console.log(depth);
+               } while (1);
+               console.log(depth);*/
 
       /* let arr = [1, 2, 3, 4, 5, 1];
-       const reducer = (accum, currentValue) => accum + currentValue;
+             const reducer = (accum, currentValue) => accum + currentValue;
 
-       console.log(arr.reduce(function depthCalc(previousValue, currentValue, index, array) {
-         return previousValue + currentValue;
-       }));*/
+             console.log(arr.reduce(function depthCalc(previousValue, currentValue, index, array) {
+               return previousValue + currentValue;
+             }));*/
 
       /* var1*/
       let message = "Samelengthkey";
@@ -45,30 +45,30 @@
       let i, j;
       let crypto = [];
       /*
-      for (let i = 0; i < message.length; i++) {
-        if (message[i] >= "a" && message[i]<="z") messageToNumber[i] = message.charCodeAt(i) - 97;
-        else messageToNumber[i] = message[i];
-      }
-      console.log(messageToNumber);
-      for (let i = 0; i < key.length; i++) {
-        keyToNumber[i] = key.charCodeAt(i) - 97;
-      }
-      console.log(keyToNumber);
-      for (i = 0, j = 0; i < message.length; i++, j++) {
-        if (j == keyToNumber.length) j = 0;
-        if (!(messageToNumber[i] === " ")) {
-          if (messageToNumber[i] + keyToNumber[j] < 26) {
-            encryptedMessage[i] = messageToNumber[i] + keyToNumber[j];
-          } else encryptedMessage[i] = messageToNumber[i] + keyToNumber[j] - 26;
-        } else encryptedMessage[i] = " ";
-      }
-      console.log(encryptedMessage);
-      for (i = 0; i < encryptedMessage.length; i++) {
-        if (encryptedMessage[i] != " ") {
-          crypto[i] = String.fromCharCode(encryptedMessage[i] + 97);
-        } else crypto[i] = " ";
-      }*/
-      function directMashine(message, key, action) {
+            for (let i = 0; i < message.length; i++) {
+              if (message[i] >= "a" && message[i]<="z") messageToNumber[i] = message.charCodeAt(i) - 97;
+              else messageToNumber[i] = message[i];
+            }
+            console.log(messageToNumber);
+            for (let i = 0; i < key.length; i++) {
+              keyToNumber[i] = key.charCodeAt(i) - 97;
+            }
+            console.log(keyToNumber);
+            for (i = 0, j = 0; i < message.length; i++, j++) {
+              if (j == keyToNumber.length) j = 0;
+              if (!(messageToNumber[i] === " ")) {
+                if (messageToNumber[i] + keyToNumber[j] < 26) {
+                  encryptedMessage[i] = messageToNumber[i] + keyToNumber[j];
+                } else encryptedMessage[i] = messageToNumber[i] + keyToNumber[j] - 26;
+              } else encryptedMessage[i] = " ";
+            }
+            console.log(encryptedMessage);
+            for (i = 0; i < encryptedMessage.length; i++) {
+              if (encryptedMessage[i] != " ") {
+                crypto[i] = String.fromCharCode(encryptedMessage[i] + 97);
+              } else crypto[i] = " ";
+            }*/
+      /*     function directMashine(message, key, action) {
         let encryptedMessage = [];
         let messageToNumber = [];
         let keyToNumber = [];
@@ -130,6 +130,37 @@
       console.log(
         directMashine("UWJJW XAGWLNFM VNNNDXHVWWL :)", "js", "decrypt")
       );
+
+      /* recursive*/
+
+      class DepthCalculator {
+        constructor() {
+          this.maxDepth = 0;
+          this.count = 0;
+        }
+
+        maxDepth;
+        count;
+
+        calculateDepth(arr) {
+          for (let i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+              this.count++;
+              console.log("N");
+              this.calculateDepth(arr[i]);
+            }
+          }
+          if (this.count > this.maxDepth) {
+            this.maxDepth = this.count;
+            this.count = 0;
+          } else this.count = 0;
+          return this.maxDepth + 1;
+        }
+      }
+
+      const c = new DepthCalculator().calculateDepth([1, 2, 3, 4, 5, [1, []]]);
+
+      console.log(c);
     </script>
   </body>
 </html>
